@@ -1,29 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {get_specific,get_movies_by_keyword} from './services/request'
+import React, {Component} from 'react';
+import { Router, Route, Switch } from "react-router";
+import Header from './components/Header'
 
-function App() {
-  get_movies_by_keyword("genre", 10749);
-  get_specific("movie", 420817);
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  state = {
+    movie: null
+  }
+
+componentDidMount(){
+  fetch('http://tmdb/')
+          .then(response=> response.json())
+          .then(response => this.setState({movie: response.results}))
+          .catch(error => {
+            alert('Ошибка при получении списка новостей');
+            console.error(error);
+})}
+  
+  render(){  
+    console.log(this.state);
+    
+    return(
+      <div>
+        <Header onMovie={this.state.movie} />
+      </div>
+    )
+  }
 }
 
 export default App;
