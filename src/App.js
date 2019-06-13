@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {get_specific,get_movies_by_keyword} from './services/request'
 
 function App() {
+  get_movies_by_keyword("genre", 10749);
+  get_specific("movie", 420817);
   return (
     <div className="App">
       <header className="App-header">
