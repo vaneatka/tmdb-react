@@ -1,26 +1,18 @@
 import React, {Component} from 'react';
-
+import {ListGroup} from 'react-bootstrap'
 
 export default class Header extends Component{
-    constructor(props){
-        super(props);
-        this.state= {
-            movies: this.props.movie
-        }
-        console.log(props, 'props');
-        
-    }
-          
+     
     
-   
-        
-    
-    render(){     
+    render(){            
+        const {onMovie} = this.props;
+        console.log(onMovie);
         
         return(
-            <div>
-                <h3>{}</h3>
-            </div>
+            <ListGroup as="ul">
+                {onMovie ? onMovie.map(el=> 
+                   <ListGroup.Item key = {el.id} as="li"> {el.title}</ListGroup.Item>):"Loading..."}
+            </ListGroup>
         )
     }
 }

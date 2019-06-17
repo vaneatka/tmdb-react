@@ -1,29 +1,29 @@
 import React, {Component} from 'react';
-import { Router, Route, Switch } from "react-router";
+// import { Router, Route, Switch } from "react-router";
 import Header from './components/Header'
-
+import {Container} from 'react-bootstrap';
+import DbApi from './services/request'
 
 class App extends Component {
   state = {
     movie: null
   }
+  DbApi = new DbApi();
 
 componentDidMount(){
-  fetch('http://tmdb/')
-          .then(response=> response.json())
-          .then(response => this.setState({movie: response.results}))
-          .catch(error => {
-            alert('Ошибка при получении списка новостей');
-            console.error(error);
-})}
+  let data =  this.DbApi.get_popular_movies();
+ this.setState({movie: data}); 
+ console.log(this.state.movie);
+ 
+}
   
   render(){  
-    console.log(this.state);
-    
+    const {movie} = this.state;
+    console.log(this.state.movie)
     return(
-      <div>
-        <Header onMovie={this.state.movie} />
-      </div>
+      <Container>
+        <Header onMovie={movie}/>
+      </Container>
     )
   }
 }
