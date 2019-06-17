@@ -11,8 +11,7 @@ export default class DbApi {
         await axios.get( this.URL + suffics + this.AUTH_KEY ).then(response => res = response);        
         
         return res.data.genres;
-    };
-    
+    };    
     
      get_tv_genres = () =>{
         let suffics = '/genre/movie/list';
@@ -41,8 +40,7 @@ export default class DbApi {
         .then((response)=>data=response)
         .catch((error)=> console.log(error));
         return data;
-    };
-    
+    };    
 } 
     
     

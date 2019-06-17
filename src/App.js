@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Router, Route, Switch } from "react-router";
+// import { Router, Route, Switch } from "react-router";
 import Header from './components/Header'
 
 
@@ -8,21 +8,22 @@ class App extends Component {
     movie: null
   }
 
-componentDidMount(){
-  fetch('http://tmdb/')
-          .then(response=> response.json())
-          .then(response => this.setState({movie: response.results}))
-          .catch(error => {
-            alert('Ошибка при получении списка новостей');
-            console.error(error);
-})}
+  fetchData = () =>{
+    fetch('http://tmdb/').then(response => response.json())
+                        .then(data=> this.setState({movie:data.results}))
+                        .catch(err=> console.log(err));
+  }
+  async componentDidMount(){
+    await this.fetchData();
+  }
   
   render(){  
-    console.log(this.state);
+    const {movie} = this.state;
+    console.log(movie);
     
     return(
       <div>
-        <Header onMovie={this.state.movie} />
+        <Header onMovie={movie ? movie: 'loading'} />
       </div>
     )
   }
