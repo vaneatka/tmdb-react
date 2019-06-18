@@ -6,11 +6,15 @@ export default class DbApi {
 
      
 
-      get_popular_movies =  () =>{
-        var some_data;  
-         fetch(`${this.URL}/movie/popular${this.AUTH_KEY}`).then(response => response.json()).then(data => some_data =  data )
-                                                                                            .catch(err=>console.log('error is ',err));       
-         return  some_data;
+//       get_popular_movies =  () =>{
+//         var some_data = [];  
+//          fetch(`${this.URL}/movie/popular${this.AUTH_KEY}`).then(response => response.json()).then(data => {some_data = data.results; console.log(some_data); return} )
+//                                                                                             .catch(err=>console.log('error is ',err));               
+//          return  some_data;
+//     } 
+      get_popular_movies = async () =>{
+        var some_data = await fetch(`${this.URL}/movie/popular${this.AUTH_KEY}`);               
+         return await some_data.json();
     } 
 
 
