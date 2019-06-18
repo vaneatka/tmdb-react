@@ -10,13 +10,19 @@ class App extends Component {
   }
   DbApi = new DbApi();
 
+  getData = (url) =>{
+    fetch(`${this.DbApi.URL}${url}${this.DbApi.AUTH_KEY}`)
+                                                    .then(response => response.json())
+                                                    .then(data => this.setState({movie: data.results})  )
+                                                                                            .catch(err=>console.log('error is ',err));
+  } 
+
 componentDidMount(){
-  let data =  this.DbApi.get_popular_movies();
- this.setState({movie: data}); 
- console.log(this.state.movie);
- 
-}
-  
+  this.getData('/movie/popular');
+  console.log(this.state.movie); 
+}  
+
+
   render(){  
     const {movie} = this.state;
     console.log(this.state.movie)
