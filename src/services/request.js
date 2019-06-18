@@ -7,7 +7,7 @@ export default class DbApi {
      
 
       get_popular_movies =  () =>{
-        let some_data;  
+        var some_data;  
          fetch(`${this.URL}/movie/popular${this.AUTH_KEY}`).then(response => response.json()).then(data => some_data =  data )
                                                                                             .catch(err=>console.log('error is ',err));       
          return  some_data;
