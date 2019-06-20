@@ -5,7 +5,7 @@ export default class Navigation extends Component {
 
 
     render(){
-        const {movieGenres, tvGenres} = this.props;        
+        const {movieGenres, tvGenres,movieGenresUpload, tvGenresUpload} = this.props;        
         
         const moviesToMenu = movieGenres ? movieGenres.map(el => {
             return (
@@ -31,10 +31,10 @@ export default class Navigation extends Component {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>                
-                <NavDropdown title="Movie Genres" id="basic-nav-dropdown">
+                <NavDropdown title="Movie Genres" id="basic-nav-dropdown" onClick = {movieGenresUpload} >
                    {moviesToMenu}
                 </NavDropdown>
-                <NavDropdown title="TV Genres" id="basic-nav-dropdown">
+                <NavDropdown title="TV Genres" id="basic-nav-dropdown" onClick = {tvGenresUpload}>
                    {tvToMenu}
                 </NavDropdown>
                 </Nav>

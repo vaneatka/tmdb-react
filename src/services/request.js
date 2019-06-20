@@ -1,7 +1,7 @@
 
 export default class DbApi {
     
-     AUTH_KEY = '?api_key=7134f742d92dc0a016cb513674a704a5';
+     AUTH_KEY = 'api_key=7134f742d92dc0a016cb513674a704a5';
      _apiURL = 'https://api.themoviedb.org/3';
 
      async getResource(url) {
@@ -16,25 +16,25 @@ export default class DbApi {
 
         
         getAllPopularMovies = async () => {
-             const res = await this.getResource(`/movie/popular`);
+             const res = await this.getResource(`/movie/popular?`);
              return res.results;
           }
        
           geMovieGenres = async () => {
-             const res = await this.getResource(`/genre/movie/list`);
+             const res = await this.getResource(`/genre/movie/list?`);
              return res.genres;
           }
        
            getTvGenres = async () => {
-             const res = await this.getResource(`/genre/tv/list`);
+             const res = await this.getResource(`/genre/tv/list?`);
              return res.genres;
            }
 
-           getMovie = async (id) => {
-             const res = await this.getResource(`/genres/${id}/movies`);
+           getMovie = async (genres_id) => {             
+             const res = await this.getResource(`/discover/movie?with_genres=${genres_id}&sort_by=popularity.desc&`);
              return res;
            }
-          
+         
            
           
           
