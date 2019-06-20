@@ -3,33 +3,40 @@ import React, {Component} from 'react';
 import Header from './components/Header'
 import {Container} from 'react-bootstrap';
 import DbApi from './services/request'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+import Movie from './components/Movie'
+
 
 class App extends Component {
   state = {
-    movie: null
+    movie: null,
+    movieGenres: null, 
+    tvGenres: null
   }
   DbApi = new DbApi();
 
-  getData = (url) =>{
-    fetch(`${this.DbApi.URL}${url}${this.DbApi.AUTH_KEY}`)
-                                                    .then(response => response.json())
-                                                    .then(data => this.setState({movie: data.results})  )
-                                                                                            .catch(err=>console.log('error is ',err));
-  } 
+
 
 componentDidMount(){
-  this.getData('/movie/popular');
-  console.log(this.state.movie); 
+  let popMovies = this.DbApi.getAllPopularMovies();
+  popMovies.then(data => this.setState({movie: data}));
+  let movieGenres = this.DbApi.geMovieGenres();
+  movieGenres.then(data => this.setState({movieGenres: data}));
+  let tvGenres = this.DbApi.getTvGenres();
+  tvGenres.then(data => this.setState({tvGenres: data}));  
 }  
 
 
   render(){  
-    const {movie} = this.state;
-    console.log(this.state.movie)
+    const {movie, movieGenres, tvGenres} = this.state;
+    
     return(
-      <Container>
-        <Header onMovie={movie}/>
-      </Container>
+        <Router>
+          <Container>
+            <Header onMovie={movie} movieGenres = {movieGenres} tvGenres = {tvGenres}/>
+            <Route path="/movie/:id" component={Movie} />  
+          </Container>
+        </Router>
     )
   }
 }
