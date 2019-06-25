@@ -21,10 +21,10 @@ export default class TV extends Component{
     res.then(data => this.setState({
       movie:data.results
     }))
-    }
+    }  
        
     render(){  
-      const {movie} = this.state;
+      let {movie} = this.state;       
       return (
         <MultipleMain  data = {movie} />
       )

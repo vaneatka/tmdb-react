@@ -31,16 +31,19 @@ export default class DbApi {
            }
 
            getMovie = async (genres_id) => {             
-             const res = await this.getResource(`/discover/movie?with_genres=${genres_id}&sort_by=popularity.desc&`);            
-                       
+             const res = await this.getResource(`/discover/movie?with_genres=${genres_id}&sort_by=popularity.desc&`);               
              return res;
            }
            getTv = async (genres_id) => {             
              const res = await this.getResource(`/discover/tv?with_genres=${genres_id}&sort_by=popularity.desc&`);            
-              await console.log(res)
-             return res;
+              return res;
            }
-         
+           
+           getTrendingAll = async () => {
+            const res = await this.getResource(`/trending/all/week?`);
+            return res.results;
+          }
+          
            
           
           

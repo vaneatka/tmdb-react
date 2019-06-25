@@ -5,19 +5,14 @@ import 'react-multi-carousel/lib/styles.css';
 
 export default class Slider extends Component{
 
-    
     render(){            
-        const {onMovie} = this.props;
-          
+        const {onMovie} = this.props;         
         
           const content = onMovie ? onMovie.map( el => { return(
                                      <Card className="bg-dark text-white" key = {el.id}>
-                                        <Card.Img src={`https://image.tmdb.org/t/p/w185${el.poster_path}`} alt={el.title} />
+                                        <Card.Img src={`https://image.tmdb.org/t/p/w185${el.poster_path}`} alt={el.title} />                                                                                                              
                                         
-                                                                                                                           
-                                        
-                                    </Card>)}) : <Spinner/>;
-            
+                                    </Card>)}) : <Spinner/>;            
      
                 return(
                   <Carousel
