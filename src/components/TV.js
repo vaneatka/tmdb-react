@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import DbApi from '../services/request'
 import MultipleMain from './MultipleMain'
 
-export default class Movie extends Component{
+export default class TV extends Component{
   
         state = {
             movie:null,
@@ -17,7 +17,7 @@ export default class Movie extends Component{
           genre_id: genre_id
         });
 
-    const res = this.DbApi.getMovie(genre_id);
+    const res = this.DbApi.getTv(genre_id);
     res.then(data => this.setState({
       movie:data.results
     }))

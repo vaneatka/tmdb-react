@@ -3,9 +3,6 @@ import React, {Component} from 'react';
 import Header from './components/Header'
 import {Container} from 'react-bootstrap';
 import DbApi from './services/request'
-import { Route, BrowserRouter as Router } from 'react-router-dom'
-import Movie from './components/Movie'
-
 
 
 class App extends Component {
@@ -38,20 +35,16 @@ componentDidMount(){
     const {movie, movieGenres, tvGenres} = this.state;
     
     return(
-        <Router>
+        
           <Container>
             <Header onMovie={movie} 
             movieGenres = {movieGenres} 
             tvGenres = {tvGenres}
             movieGenresUpload = {this.movieGenresUpload}
             tvGenresUpload = {this.tvGenresUpload}
-            />
-            
-            <Route exact path="/" component={Movie}/>  
-            <Route path="/movie/:id" render={props=><Movie movie = {movie}{...props}/>  } />  
-              
+            />                    
           </Container>
-        </Router>
+        
     )
   }
 }

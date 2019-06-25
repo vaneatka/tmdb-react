@@ -14,6 +14,7 @@ export default class Header extends Component{
                   tvGenres = {tvGenres}
                   movieGenresUpload = {movieGenresUpload}
                   tvGenresUpload = {tvGenresUpload}
+                  onMovie = {onMovie}
                   />                 
                  </>
         )   
