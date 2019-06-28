@@ -4,7 +4,7 @@ import {  Link, BrowserRouter as Router, Route } from 'react-router-dom'
 import Movie from './Movie';
 import TV from './TV';
 import Main from './Main';
-
+import SingleMovie from './SingleMovie'
 export default class Navigation extends Component {
 
 
@@ -51,6 +51,7 @@ export default class Navigation extends Component {
             <Route exact path="/" component={Main}/>  
             <Route path="/movie/:id" component={props=><Movie movie = {onMmovie}{...props}/>  } />  
             <Route path="/tv/:id" component={props=><TV movie = {onMmovie}{...props}/>  } />  
+            <Route path="/showmovie/:id" component={SingleMovie} /> 
         </Router>
         )
     }

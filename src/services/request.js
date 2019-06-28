@@ -43,6 +43,11 @@ export default class DbApi {
             const res = await this.getResource(`/trending/all/week?`);
             return res.results;
           }
+           
+          getSpecificMovie = async (id) => {
+            const res = await this.getResource(`/movie/${id}?`);
+            return res;
+          }
           
            
           
