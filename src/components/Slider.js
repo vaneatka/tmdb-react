@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Card , Spinner} from 'react-bootstrap'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import {  Link, BrowserRouter as Router, Route } from 'react-router-dom'
-import SingleMovie from './SingleMovie'
+import { Link } from 'react-router-dom';
+
 
 
 export default class Slider extends Component{
@@ -60,23 +60,17 @@ export default class Slider extends Component{
                                                                   <Card className="bg-dark text-white" key = {el.id}>
                                                                                               <Link to={`/showmovie/${el.id}`}>        
                                                                                               <Card.Img src={`https://image.tmdb.org/t/p/w185${el.poster_path}`} alt={el.title} />                                                                                                              
-                                                                                              </Link>
-                                                                                              
+                                                                                              </Link>                                                                                              
                                                                                           </Card>)})}             
-                                                                  </Carousel>: <Spinner/>
-                                                                
-                                                                
-     
+                                                                  </Carousel>: <Spinner/> 
                 return(
 
-
-
-                   <Router>
+                   
                   <div>
                     {content}
                   </div>
-                  <Route path="/showmovie/:id" render={(props)=><SingleMovie/>} /> 
-                   </Router>
+                  
+                   
 
 
 

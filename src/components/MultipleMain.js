@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import { Link } from 'react-router-dom';
 export default class  MultipleMain extends Component{
 
 
@@ -16,8 +16,10 @@ export default class  MultipleMain extends Component{
                     
                   </div>
                   <span className='mt-4 ml-3'>
-                      <a href="#" className="text-decoration-none">See more... >></a>
-                    </span>                  
+                  <Link to={`/showmovie/${el.id}`}>
+                      See more... >>
+                  </Link>           
+                  </span>                  
                  </div>
                   )
       }) : "";

@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
-// import { Router, Route, Switch } from "react-router";
+import { Router, Route } from "react-router-dom";
 import Header from './components/Header'
 import {Container} from 'react-bootstrap';
-import DbApi from './services/request'
+import DbApi from './services/request';
+import SingleMovie from './components/SingleMovie';
+import  { createBrowserHistory } from "history";
+import Movie from './components/Movie';
+import TV from './components/TV';
+import Main from './components/Main';
+
 
 
 class App extends Component {
@@ -11,7 +17,8 @@ class App extends Component {
     movieGenres: null, 
     tvGenres: null    
   }
-
+  history = createBrowserHistory();
+  
   DbApi = new DbApi();
 
 movieGenresUpload=()=>{   
@@ -37,12 +44,18 @@ componentDidMount(){
     return(
         
           <Container>
+            <Router history = {this.history}>
             <Header onMovie={movie} 
             movieGenres = {movieGenres} 
             tvGenres = {tvGenres}
             movieGenresUpload = {this.movieGenresUpload}
             tvGenresUpload = {this.tvGenresUpload}
-            />                    
+            /> 
+            <Route exact path="/" component={Main}/>               
+            <Route path="/movie/:id" component={props=><Movie movie = {movie}{...props}/>  } />  
+            <Route path="/tv/:id" component={props=><TV movie = {movie}{...props}/>  } />  
+            <Route path="/showmovie/:id" component={(props)=><SingleMovie movie = {movie}{...props}/>} /> 
+            </Router>   
           </Container>
         
     )
