@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Router, Route } from "react-router-dom";
+import {Switch, Router, Route } from "react-router-dom";
 import Header from './components/Header'
 import {Container} from 'react-bootstrap';
 import DbApi from './services/request';
@@ -51,10 +51,12 @@ componentDidMount(){
             movieGenresUpload = {this.movieGenresUpload}
             tvGenresUpload = {this.tvGenresUpload}
             /> 
+            <Switch>
             <Route exact path="/" component={Main}/>               
             <Route path="/movie/:id" component={props=><Movie movie = {movie}{...props}/>  } />  
             <Route path="/tv/:id" component={props=><TV movie = {movie}{...props}/>  } />  
-            <Route path="/showmovie/:id" component={(props)=><SingleMovie movie = {movie}{...props}/>} /> 
+            <Route path="/showmovie/:id" render={({match})=><SingleMovie {...match}/>} /> 
+            </Switch>
             </Router>   
           </Container>
         

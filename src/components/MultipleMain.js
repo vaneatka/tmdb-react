@@ -16,7 +16,7 @@ export default class  MultipleMain extends Component{
                     
                   </div>
                   <span className='mt-4 ml-3'>
-                  <Link to={`/showmovie/${el.id}`}>
+                  <Link to={`/showmovie/${el.id}`} >
                       See more... >>
                   </Link>           
                   </span>                  

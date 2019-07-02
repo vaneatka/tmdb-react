@@ -7,13 +7,14 @@ export default class SingleMovie extends Component{
         state = {
             id: null,
             movie: null
-        }      
-      
+        }            
       DbApi = new DbApi();
         
       componentWillReceiveProps(nextProps){
-        const id = this.props.match.params.id || null;
-        if(nextProps.match.params.id !== this.state.id){
+        console.log(nextProps);
+        
+        const id = nextProps.params.id || null;
+        if(nextProps.params.id !== this.state.id){
           //Perform some operation
           const res = this.DbApi.getSpecificMovie(id);
           res.then(data => this.setState({
@@ -29,7 +30,6 @@ export default class SingleMovie extends Component{
      
       const contents = movie ? (
                                 <h2>{movie.title}</h2>
-
                                )  : 'loading';      
       return (
         <div>
